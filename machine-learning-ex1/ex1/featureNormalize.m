@@ -24,16 +24,15 @@ sigma = zeros(1, size(X, 2));
 %               each feature. 
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
-%       
+% x = (x - mu)/sigma'
+n_col = size(X,2); %Features x1, x2... xn
+n_lin = size(X,1); %Values of x..
 
-
-
-
-
-
-
-
-
+for col = 1:n_col
+    mu(col) = mean(X(:,1));
+    sigma(col) = std(X(:,1)); 
+    for lin = 1:n_lin
+        X_norm(lin, col) = (X(lin,col) - mu(col))/sigma(col);
+    end
 % ============================================================
-
 end
