@@ -12,16 +12,15 @@ J = 0;
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
-%J = (1/(2*m))*sum((h(x)-y)^2) \n
+%J(theta) = 1/2m*sum((h(theta)-y)^2)
+%h(theta) = theta0 - theta1x
 
-%h(x) = theta0 + theta1x
-h = X * theta; 
+h = X * theta; % Matrix h(theta)
+diff_h_y = h - y; %Difference h - y =>error matrix
+diff_sqr = diff_h_y.^2; 
+J = (1/(2*m))*sum(diff_sqr);
 
-%Difference between h(theta) and y (actual values): squared errors
-diff_h_y_sqr = (h - y).^2; 
 
-%Finally J
-J = (1/(2*m))*(sum(diff_h_y_sqr));
 
 % =========================================================================
 

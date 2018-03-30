@@ -11,7 +11,7 @@ theta = zeros(size(X, 2), 1);
 %
 
 % ---------------------- Sample Solution ----------------------
-
+theta = (X' * X)⁻1 * (X' * y);
 
 
 
