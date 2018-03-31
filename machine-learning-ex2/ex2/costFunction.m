@@ -19,6 +19,7 @@ grad = zeros(size(theta));
 %
 % Note: grad should have the same dimensions as theta
 %
+% J(theta) = log(theta)-1
 
 
 
