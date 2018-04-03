@@ -19,14 +19,17 @@ grad = zeros(size(theta));
 %
 % Note: grad should have the same dimensions as theta
 %
-% J(theta) = log(theta)-1
+% J(theta) = 1/m * SUM[-y*log(h(x) - (1 - y)*log(1 - h(x))]
 
+h = sigmoid(X * theta); % Calculating h(x) using sigmoid function: logistic regression
 
+py1 = y' * log(h); %' Calculating -y'log(h)  'part one of J
 
+py0 = (1-y)' * log(1-h); %' Calculating -(1-y)'log(1-h) - 'part 2 of J 
 
+J = 1/m * (-py1 - py0); %Finally, calculating J(theta)
 
-
-
+grad = 1/m * X' * (h - y); %'Partial derivative of J
 
 % =============================================================
 
