@@ -17,7 +17,19 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+% Calculating lambda/2mSUM(theta²) - reg_term
 
+reg_term = lambda/(2*m) * (sum(theta([2,size(theta)]).^2));
+
+h = sigmoid(X * theta); % Calculating h(x) using sigmoid function: logistic regression
+
+py1 = y' * log(h); %' Calculating -y'log(h)  'part one of J
+
+py0 = (1-y)' * log(1-h); %' Calculating -(1-y)'log(1-h) - 'part 2 of J 
+
+J = 1/m * (-py1 - py0) + reg_term; %Finally, calculating J(theta)
+
+grad = 1/m * X' * (h - y); %'Partial derivative of J
 
 
 
