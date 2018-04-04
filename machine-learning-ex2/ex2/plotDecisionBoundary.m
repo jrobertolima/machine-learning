@@ -20,7 +20,7 @@ if size(X, 2) <= 3
     plot_y = (-1./theta(3)).*(theta(2).*plot_x + theta(1));
 
     % Plot, and adjust axes for better viewing
-    plot(plot_x, plot_y)
+    plot(plot_x, plot_y,'LineWidth',1)
     
     % Legend, specific for the exercise
     legend('Admitted', 'Not admitted', 'Decision Boundary')
@@ -37,7 +37,7 @@ else
             z(i,j) = mapFeature(u(i), v(j))*theta;
         end
     end
-    z = z'; % important to transpose z before calling contour
+    z = z'; % 'important to transpose z before calling contour
 
     % Plot z = 0
     % Notice you need to specify the range [0, 0]
