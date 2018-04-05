@@ -1,7 +1,8 @@
-# um comentário - isto é ignorado
+﻿# um comentário - isto é ignorado
 # sem arquivos terminados em .a
 *.[ao]
 *.dat
+!ex?.pdf
 *.pdf
 token.mat
 ## mas rastreie lib.a, mesmo que você tenha ignorado arquivos terminados em .a acima
@@ -9,3 +10,4 @@ token.mat
 # apenas ignore o arquivo TODO na raiz, não o subdiretório TODO
 # ignore todos os arquivos no diretório build/
 # ignore doc/notes.txt mas, não ignore doc/server/arch.txt
+lib/*
