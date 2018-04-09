@@ -35,6 +35,27 @@ grad = zeros(size(theta));
 %           temp(1) = 0;   % because we don't add anything for j = 0  
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
+%Calculating Cost regularization term
+cost_reg_term = lambda/(2*m) * (sum(theta([2,size(theta,1)]).^2));
+
+% Calculating h(x) using sigmoid function: logistic regression
+h = sigmoid(X * theta);
+
+
+% Calculating -y'log(h) part one of J(theta)  '
+py1 = y' * log(h);
+
+%' Calculating -(1-y)'log(1-h) - 'part 2 of J 
+py0 = (1-y)' * log(1-h); '
+
+%Finally, calculating J(theta)
+J = 1/m * (-py1 - py0) + cost_reg_term; 
+
+%Calculating gardient regularization term
+grad_reg_term = theta*(lambda/m);
+grad_reg_term(1) = 0; % Zeroing theta(1)
+
+grad = (1/m * X' * (h - y)) + grad_reg_term; %'Partial derivative of J
 
 
 
