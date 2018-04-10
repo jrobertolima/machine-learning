@@ -46,7 +46,7 @@ h = sigmoid(X * theta);
 py1 = y' * log(h);
 
 %' Calculating -(1-y)'log(1-h) - 'part 2 of J 
-py0 = (1-y)' * log(1-h); '
+py0 = (1-y)' * log(1-h); %'
 
 %Finally, calculating J(theta)
 J = 1/m * (-py1 - py0) + cost_reg_term; 
@@ -56,15 +56,6 @@ grad_reg_term = theta*(lambda/m);
 grad_reg_term(1) = 0; % Zeroing theta(1)
 
 grad = (1/m * X' * (h - y)) + grad_reg_term; %'Partial derivative of J
-
-
-
-
-
-
-
-
-
 
 % =============================================================
 
