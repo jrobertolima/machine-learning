@@ -11,3 +11,4 @@ token.mat
 # ignore todos os arquivos no diretório build/
 # ignore doc/notes.txt mas, não ignore doc/server/arch.txt
 lib/*
+machine-learning-ex4/ex4/octave-workspace

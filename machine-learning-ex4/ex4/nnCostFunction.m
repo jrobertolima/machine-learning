@@ -62,8 +62,32 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Adding ones to X
+X = [ones(m,1) X];
+y_matrix = eye(num_labels)(y,:);
 
+for j=1:num_labels
+ soma = 0;
+    for i=1:m 
+        % Calculating h(x) using sigmoid function: logistic regression
+        z2 = X(i,:) * Theta1';
+        a2 = sigmoid(z2);
+        a2 = [ones(size(a2,1)) a2];
+        z3 = a2 * Theta2' ;
+        h = sigmoid(z3);
 
+        % Calculating -y'log(h) part one of J(theta)  '
+       py1 = y_matrix.* log(h);
+
+        %' Calculating -(1-y)'log(1-h) - part 2 of J 
+        py0 = (1-y_matrix).*log(1-h); %
+
+        %Finally, calculating J(theta)
+        soma += (-py1- py0) ; 
+    end 
+    J += soma;   
+end
+J = -1/m*J;
 
 
 
