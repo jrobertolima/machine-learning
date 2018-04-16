@@ -62,7 +62,7 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-% Adding ones to X
+% Adding ones to X and only
 X = [ones(m,1) X];
 y_matrix = eye(num_labels)(y,:);
 
