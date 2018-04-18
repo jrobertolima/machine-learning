@@ -71,7 +71,7 @@ z2 = X * Theta1';%'a1
 a2 = sigmoid(z2);
 a2 = [ones(size(a2,1),1) a2];
 z3 = a2 * Theta2' ; %' 
-h = sigmoid(z3);
+h = sigmoid(z3); %a3
 
 py0 = sum(sum(y_matrix.*(log(h))));
 py1 = sum(sum((1-y_matrix).*(log(1 - h)))); %
