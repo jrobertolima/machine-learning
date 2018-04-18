@@ -78,6 +78,14 @@ py1 = sum(sum((1-y_matrix).*(log(1 - h)))); %
 
 J = (1/m)*(-py0 -py1);
 
+%Calculating regularization terms
+soma := 0;
+for i = 1:m
+    soma += sum(sum(Theta1_grad(:,2).^2)) + sum(sum(Theta2_grad(:,2).^2));
+
+end
+J = J + (y/2m)*soma;
+
 % -------------------------------------------------------------
 
 % =========================================================================
