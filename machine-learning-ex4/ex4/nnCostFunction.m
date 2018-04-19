@@ -67,24 +67,28 @@ X = [ones(m,1) X];
 y_matrix = eye(num_labels)(y,:);
 
 % Calculating h(x) using sigmoid function: logistic regression
-z2 = X * Theta1';%'a1
+a1 = X; %Already include bias unit
+z2 = a1 * Theta1';%'
 a2 = sigmoid(z2);
-a2 = [ones(size(a2,1),1) a2];
+a2 = [ones(size(a2,1),1) a2]; %including bias unit
 z3 = a2 * Theta2' ; %' 
-h = sigmoid(z3);
+h = a3 = sigmoid(z3);
 
+%Calculating Cost
 py0 = sum(sum(y_matrix.*(log(h))));
 py1 = sum(sum((1-y_matrix).*(log(1 - h)))); %
 
 J = (1/m)*(-py0 -py1);
 
 %Calculating regularization terms
-soma := 0;
-for i = 1:m
-    soma += sum(sum(Theta1_grad(:,2).^2)) + sum(sum(Theta2_grad(:,2).^2));
+J = J + (lambda/(2*m))*(sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:, 2:end).^2)));
 
+%Implementing backpropagation
+delta = zeros(size(a3,1));
+for i = 1:num_labels
+    delta(i) = a3(i) - y_matrix(i);
 end
-J = J + (y/2m)*soma;
+disp(delta)   ;
 
 % -------------------------------------------------------------
 
