@@ -66,7 +66,7 @@ Theta2_grad = zeros(size(Theta2));
 X = [ones(m,1) X];
 y_matrix = eye(num_labels)(y,:);
 
-% Calculating h(x) using sigmoid function: logistic regression
+% Implementing forward propagation
 a1 = X; %Already include bias unit
 z2 = a1 * Theta1';%'
 a2 = sigmoid(z2);
@@ -74,21 +74,24 @@ a2 = [ones(size(a2,1),1) a2]; %including bias unit
 z3 = a2 * Theta2' ; %' 
 h = a3 = sigmoid(z3);
 
-%Calculating Cost
-py0 = sum(sum(y_matrix.*(log(h))));
-py1 = sum(sum((1-y_matrix).*(log(1 - h)))); %
-
-J = (1/m)*(-py0 -py1);
+%Calculating Cost fo NN
+J = (1/m)*(-sum(sum(y_matrix.*(log(h)))) -sum(sum((1-y_matrix).*(log(1 - h)))));
 
 %Calculating regularization terms
 J = J + (lambda/(2*m))*(sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:, 2:end).^2)));
 
 %Implementing backpropagation
-delta = zeros(size(a3,1));
-for i = 1:num_labels
-    delta(i) = a3(i) - y_matrix(i);
-end
-disp(delta)   ;
+d3 = a3 - y_matrix;
+d2 = (d3*Theta2(:,2:end)) .*(a2(:,2:end) .* (1- a2(:,2:end))); 
+
+Delta1 = d2' * a1;
+Delta2 = d3' * a2;
+
+%Regularizing Neural network
+Theta1(:,1) = 0;
+Theta2(:,1) = 0;
+Theta1_grad =Delta1/m + ((lambda/m) * Theta1);
+Theta2_grad = Delta2/m + ((lambda/m) * Theta2);
 
 % -------------------------------------------------------------
 
