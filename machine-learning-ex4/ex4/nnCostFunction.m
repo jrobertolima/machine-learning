@@ -84,11 +84,11 @@ J = (1/m)*(-py0 -py1);
 J = J + (lambda/(2*m))*(sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:, 2:end).^2)));
 
 %Implementing backpropagation
-delta = zeros(size(a3,1));
-for i = 1:size(a3,1)
-    delta(i) = a3(i) - y_matrix(i);
-end
-disp(delta)   ;
+d3 = zeros(size(a3,1));
+%for i = 1:num_labels
+    d3 = a3 - y_matrix;
+%end
+d2 = ((Theta2(:,2:end)' * d3).*a2 .* (1 -a2); 
 
 % -------------------------------------------------------------
 
