@@ -39,15 +39,19 @@ error_val   = zeros(m, 1);
 %       call the function with the lambda argument set to 0. 
 %       Do note that you will still need to use lambda when running
 %       the training to obtain the theta parameters.
-%
+%disp ()
 % Hint: You can loop over the examples with the following:
-%
-%       for i = 1:m
+        
+       for j = 1:m
 %           % Compute train/cross validation errors using training examples 
 %           % X(1:i, :) and y(1:i), storing the result in 
 %           % error_train(i) and error_val(i)
-%           ....
-%           
+
+           %Training de parameters theta 
+           [theta] = trainLinearReg(X(1:j,:),y(1:j), lambda);
+
+            error_train(j) = linearRegCostFunction(X(1:j,:),y(1:j),theta,0);   
+            error_val(j) = linearRegCostFunction(Xval(j:end,:), yval(j:end), theta, 0);           
 %       end
 %
 
