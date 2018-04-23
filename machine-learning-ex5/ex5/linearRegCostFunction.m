@@ -22,13 +22,15 @@ grad = zeros(size(theta));
 h = X * theta;
 
 %Calculating regularization term
-reg_perm = (lambda/(2*m)) * sum((theta(2:end).^2));
+reg_term = (lambda/(2*m)) * sum((theta(2:end).^2));
 
 %Calculating cost J(theta)
-J = (1/(2*m)) * sum((h - y).^2) + reg_perm;
-theta(1) = 0;
+J = (1/(2*m)) * sum((h - y).^2) + reg_term;
+
 %Calculating gradient
-grad = (1/m) * (X' *(h - y)) + (lambda/m) * theta;
+theta(1) = 0; % if theta > 1, add grad_term, else do not
+grad_term = (lambda/m) * theta;
+grad = (1/m) * (X' *(h - y)) + grad_term;
 
 
 %' =========================================================================

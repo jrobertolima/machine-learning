@@ -39,7 +39,6 @@ error_val   = zeros(m, 1);
 %       call the function with the lambda argument set to 0. 
 %       Do note that you will still need to use lambda when running
 %       the training to obtain the theta parameters.
-%disp ()
 % Hint: You can loop over the examples with the following:
         
        for j = 1:m
@@ -50,9 +49,9 @@ error_val   = zeros(m, 1);
            %Training de parameters theta 
            [theta] = trainLinearReg(X(1:j,:),y(1:j), lambda);
 
-            error_train(j) = linearRegCostFunction(X(1:j,:),y(1:j),theta,0);   
-            error_val(j) = linearRegCostFunction(Xval(j:end,:), yval(j:end), theta, 0);           
-%       end
+            error_train(j) = linearRegCostFunction(X(1:j,:),y(1:j),theta,0);%apply ONLY in the subset training   
+            error_val(j) = linearRegCostFunction(Xval, yval, theta, 0);%apply all over validation set           
+       end
 %
 
 % ---------------------- Sample Solution ----------------------
