@@ -2,7 +2,7 @@
 # sem arquivos terminados em .a
 *.[ao]
 *.dat
-!ex?.pdf
+!ex*.pdf
 *.pdf
 token.mat
 ## mas rastreie lib.a, mesmo que você tenha ignorado arquivos terminados em .a acima
