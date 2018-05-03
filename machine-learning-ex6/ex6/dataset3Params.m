@@ -23,12 +23,22 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
-
-
-
-
-
-
+%Defining vector of values to try with sigma and C
+values = [0.01 0.03 0.1 0.3 1 3 10 30]';%'
+values_size = size(values,1);
+error_temp = 1000;
+%Iterating over values to try every combination of sigma and C
+for i = 1:values_size  
+    for j = 1:values_size
+        model= svmTrain(X, y, i, @(x1, x2) gaussianKernel(x1, x2, j));
+        predictions = svmPredict(model, Xval);
+        errors = mean(double(predictions ~= yval));
+        if errors < error_temp
+            C = values(i);
+            sigma = values(j);
+            error_temp = errors;
+         end;    
+    end;   
+end;
 % =========================================================================
-
 end
