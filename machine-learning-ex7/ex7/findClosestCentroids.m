@@ -20,12 +20,15 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
-
-
-
-
-
-
+x_size = size(X,1);
+for j = 1:x_size
+    distances = zeros(K,1);
+    for i = 1:K
+        distances(i) = sum(bsxfun(@minus, X(j,:), centroids(i,:)).^2);
+    end;
+    [d i_dx] = min(distances);
+    idx(j) = i_dx;
+end;
 
 % =============================================================
 
