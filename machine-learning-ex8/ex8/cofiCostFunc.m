@@ -40,23 +40,17 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
-pm = X * Theta';%'Predicting movie ratings
-mre = pm - Y; % Computing the error between prediction and ground value 
-ef = mre.*R; % Ignoring the movies user didn't rate'
-J = (1/2) * sum(sum(((X * Theta' - Y).* R).^2)); % 'All above things joined
+%Calculating cost with regularization
+%pm = X * Theta';%'Predicting movie ratings
+%mre = pm - Y; % Computing the error between prediction and ground value 
+error_factor_vector = (X * Theta' - Y).* R; % Ignoring the movies user didn't' rate'
+J = (1/2) * sum(sum((error_factor_vector).^2)) ...
+ + (lambda/2)*sum(sum(Theta.^2)) ...
+ + lambda/2 * sum(sum(X.^2)); % 
 
-X_grad = ef * Theta;
-Theta_grad = ef' * X;
-
-
-
-
-
-
-
-
-
-
+%Calculating gradients with regularization
+X_grad = error_factor_vector * Theta + lambda*X;
+Theta_grad = error_factor_vector' * X + lambda*Theta;
 
 
 % =============================================================
