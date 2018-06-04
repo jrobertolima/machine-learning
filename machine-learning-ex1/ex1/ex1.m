@@ -75,7 +75,6 @@ pause;
 fprintf('\nRunning Gradient Descent ...\n')
 % run gradient descent
 theta = gradientDescent(X, y, theta, alpha, iterations);
-
 % print theta to screen
 fprintf('Theta found by gradient descent:\n');
 fprintf('%f\n', theta);
