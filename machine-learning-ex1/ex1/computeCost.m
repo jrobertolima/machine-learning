@@ -26,7 +26,7 @@ J = 0;
 %    X_original = X(:,2);
 %    sum_diff = 0;
 %    for i = 1:m
-%        sum_diff += ((theta(1) + theta(2)*X(i,2)) - y(i))^2;
+%        sum_diff += ((theta(1) + theta(2)*X_original(i)) - y(i))^2;
 %    end;
 %    J = (1/(2*m))*sum_diff;
 % =========================================================================
